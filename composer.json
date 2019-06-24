@@ -1,6 +1,6 @@
 {
     "name": "visiosoft/dropbox-field_type",
-    "type": "streams-addon",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Visiosoft\\DropboxFieldType\\": "src/"
