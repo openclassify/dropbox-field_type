@@ -8,6 +8,12 @@
     },
     "require": {
         "mnsami/composer-custom-directory-installer": "1.1.*"
+    },
+    "extra":{
+        "installer-paths":{
+            "./addons/default/visiosoft/{$name}": ["visiosoft/dropbox-field_type"]
+        }
     }
+
 
 }
