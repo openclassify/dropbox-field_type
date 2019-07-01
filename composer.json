@@ -1,13 +1,10 @@
 {
     "name": "visiosoft/dropbox-field_type",
-    "type": "library",
+    "type": "streams-addon",
     "autoload": {
         "psr-4": {
             "Visiosoft\\DropboxFieldType\\": "src/"
         }
-    },
-    "require": {
-        "mnsami/composer-custom-directory-installer": "1.1.*"
     }
 
 
