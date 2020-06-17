@@ -2,6 +2,7 @@
 
 use Visiosoft\DropboxFieldType\DropboxFieldType;
 use Anomaly\Streams\Platform\Support\Value;
+use Visiosoft\PackagesModule\PackageEntry\Contract\PackageEntryRepositoryInterface;
 
 /**
  * Class Related
@@ -12,6 +13,13 @@ use Anomaly\Streams\Platform\Support\Value;
  */
 class Related
 {
+
+    private $packageEntryRepository;
+
+    public function __construct(PackageEntryRepositoryInterface $packageEntryRepository)
+    {
+        $this->packageEntryRepository = $packageEntryRepository;
+    }
 
     /**
      * Handle the options.
@@ -26,7 +34,7 @@ class Related
 
         $query   = $model->newQuery()
         ->where('parent_category_id',NULL);//Main Categories
-        $results = $query->get();
+        $results = $query->orderBy('id')->get();
 
         try {
 
@@ -34,12 +42,22 @@ class Related
              * Try and use a non-parsing pattern.
              */
             if (strpos($fieldType->config('title_name', $model->getTitleName()), '{') === false) {
-                $fieldType->setOptions(
-                    $results->pluck(
-                        $fieldType->config('title_name', $model->getTitleName()),
-                        $fieldType->config('key_name', $model->getKeyName())
-                    )->all()
-                );
+                $categories = $results->pluck(
+                    $fieldType->config('title_name', $model->getTitleName()),
+                    $fieldType->config('key_name', $model->getKeyName())
+                )->all();
+                $packageEntries = $this->packageEntryRepository->newQuery()
+                    ->whereIn('cat_id', array_keys($categories))->where('package_id', $fieldType->getEntry()->id)
+                    ->orderBy('cat_id')->get()->keyBy('cat_id');
+                $options = array();
+                foreach ($categories as $id => $category) {
+                    $options[$id] = [
+                        'name' => $category,
+                        'ad_limit' => $packageEntries[$id]->ad_limit,
+                        'time_limit' => $packageEntries[$id]->time_limit,
+                    ];
+                }
+                $fieldType->setOptions($options);
             }
 
             /**
