@@ -1,5 +1,5 @@
 {% for value, option in field_type.options %}
-    <label class="control-label">{{ trans(option['name']) }} {{ trans('visiosoft.field_type.dropbox::input.limit') }}
+    <label class="control-label">{{ trans( option['name'] ? option['name'] : option) }} {{ trans('visiosoft.field_type.dropbox::input.limit') }}
         <span class="required">*</span>
     </label>
     <div class="field-group col-sm-24 price">
