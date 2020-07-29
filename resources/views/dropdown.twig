@@ -34,6 +34,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm">
+                <div class="form-group commission-field decimal-field_type">
+                    <label class="control-label">{{ trans('visiosoft.field_type.dropbox::input.commission') }}
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="number" data-decimals="2"
+                               value="{{ option['commission'] ? option['commission'] : setting_value('visiosoft.module.packages::default_commission') }}"
+                               min="0" max="100" name="commission{{ value }}" step="any" placeholder="" class="form-control"
+                               required data-field="commission" data-field_name="cat{{ value }}"
+                               data-provides="anomaly.field_type.decimal"
+                               onhover="(function (e) {e.preventDefault();})(event);">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endfor %}

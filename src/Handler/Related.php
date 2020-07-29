@@ -55,6 +55,7 @@ class Related
                         'name' => $category,
                         'ad_limit' => $packageEntries[$id]->ad_limit,
                         'time_limit' => $packageEntries[$id]->time_limit,
+                        'commission' => $packageEntries[$id]->commission,
                     ];
                 }
                 $fieldType->setOptions($options);
