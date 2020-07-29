@@ -41,7 +41,7 @@
                     </label>
                     <div class="input-wrapper">
                         <input type="number" data-decimals="2"
-                               value="{{ option['commission'] ? option['commission'] : setting_value('visiosoft.module.packages::default_commission') }}"
+                               value="{{ option['commission'] is not null ? option['commission'] : setting_value('visiosoft.module.packages::default_commission') }}"
                                min="0" max="100" name="commission{{ value }}" step="any" placeholder="" class="form-control"
                                required data-field="commission" data-field_name="cat{{ value }}"
                                data-provides="anomaly.field_type.decimal"
