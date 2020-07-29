@@ -51,11 +51,21 @@ class Related
                     ->orderBy('cat_id')->get()->keyBy('cat_id');
                 $options = array();
                 foreach ($categories as $id => $category) {
-                    $options[$id] = [
-                        'name' => $category,
-                        'ad_limit' => $packageEntries[$id]->ad_limit,
-                        'time_limit' => $packageEntries[$id]->time_limit,
-                    ];
+                    if (isset($packageEntries[$id])) {
+                        $options[$id] = [
+                            'name' => $category,
+                            'ad_limit' => $packageEntries[$id]->ad_limit,
+                            'time_limit' => $packageEntries[$id]->time_limit,
+                            'commission' => $packageEntries[$id]->commission,
+                        ];
+                    } else {
+                        $options[$id] = [
+                            'name' => $category,
+                            'ad_limit' => setting_value('visiosoft.module.packages::default_adv_limit'),
+                            'time_limit' => setting_value('visiosoft.module.advs::default_published_time'),
+                            'commission' => setting_value('visiosoft.module.orders::commission'),
+                        ];
+                    }
                 }
                 $fieldType->setOptions($options);
             }
