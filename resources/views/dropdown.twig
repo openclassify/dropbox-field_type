@@ -10,7 +10,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="input-wrapper">
-                        <input type="number" min="1" max="" name="adlimit{{ value }}" step="1" placeholder="" required
+                        <input type="number" min="0" max="" name="adlimit{{ value }}" step="1" placeholder="" required
                                value="{{ option['ad_limit'] ? option['ad_limit'] : setting_value('visiosoft.module.packages::default_adv_limit') }}"
                                class="form-control" data-field="adLimit"
                                data-field_name="cat{{ value }}" data-provides="anomaly.field_type.integer"
