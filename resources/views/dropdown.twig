@@ -1,17 +1,17 @@
 {% for value, option in field_type.options %}
-    <label class="control-label">{{ trans( option['name'] ? option['name'] : option) }} {{ trans('visiosoft.field_type.dropbox::input.limit') }}
-        <span class="required">*</span>
+    <label class="control-label">
+        {{ trans( option['name'] ? option['name'] : option) }} {{ trans('visiosoft.field_type.dropbox::input.limit') }}
     </label>
     <div class="field-group col-sm-24 price">
         <div class="row">
             <div class="col-sm">
                 <div class="form-group price-field integer-field_type">
-                    <label class="control-label">{{ trans('visiosoft.field_type.dropbox::input.create_ad_limit') }}
-                        <span class="required">*</span>
+                    <label class="control-label">
+                        {{ trans('visiosoft.field_type.dropbox::input.create_ad_limit') }}
                     </label>
                     <div class="input-wrapper">
                         <input type="number" min="0" max="" name="adlimit{{ value }}" step="1" placeholder="" required
-                               value="{{ option['ad_limit'] ? option['ad_limit'] : setting_value('visiosoft.module.packages::default_adv_limit') }}"
+                               value="{{ option['ad_limit'] ? option['ad_limit'] : 0 }}"
                                class="form-control" data-field="adLimit"
                                data-field_name="cat{{ value }}" data-provides="anomaly.field_type.integer"
                                onhover="(function (e) {e.preventDefault();})(event);">
@@ -20,8 +20,8 @@
             </div>
             <div class="col-sm">
                 <div class="form-group price-field integer-field_type">
-                    <label class="control-label">{{ trans('visiosoft.field_type.dropbox::input.ad_publish_time') }}
-                        <span class="required">*</span>
+                    <label class="control-label">
+                        {{ trans('visiosoft.field_type.dropbox::input.ad_publish_time') }}
                     </label>
                     <div class="input-wrapper">
                         <input type="number"
@@ -36,8 +36,8 @@
             </div>
             <div class="col-sm">
                 <div class="form-group commission-field decimal-field_type">
-                    <label class="control-label">{{ trans('visiosoft.field_type.dropbox::input.commission') }}
-                        <span class="required">*</span>
+                    <label class="control-label">
+                        {{ trans('visiosoft.field_type.dropbox::input.commission') }}
                     </label>
                     <div class="input-wrapper">
                         <input type="number" data-decimals="2"

@@ -61,7 +61,7 @@ class Related
                     } else {
                         $options[$id] = [
                             'name' => $category,
-                            'ad_limit' => setting_value('visiosoft.module.packages::default_adv_limit'),
+                            'ad_limit' => 0,
                             'time_limit' => setting_value('visiosoft.module.advs::default_published_time'),
                             'commission' => setting_value('visiosoft.module.orders::commission'),
                         ];
